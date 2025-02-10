@@ -9,7 +9,7 @@ How to use:
 
 1. Clone this repo to your directory, then open the project file.
 
-2. Download state boundary polygons from https://www2.census.gov/geo/tiger/GENZ2015/shp/cb_2015_us_state_500k.zip (you can edit some paths information and use a newer version if needed) and river data for "North and Central America"" at https://www.hydrosheds.org/products/hydrorivers. Make sure that these folders are in the cloned repo's project folder.
+2. Download state boundary polygons from https://www2.census.gov/geo/tiger/GENZ2015/shp/cb_2015_us_state_500k.zip (you can edit some paths information and use a newer version if needed) and river data for "North and Central America"" at https://data.hydrosheds.org/file/HydroRIVERS/HydroRIVERS_v10_na_shp.zip. Make sure that these folders are in the cloned repo's project folder. Unzip these folders.
 
 3. Make a csv file with the points that you are trying to find upstream gauges for. Include "Name", "lat", and "lon" columns, as these are used by the script.
 

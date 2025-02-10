@@ -7,7 +7,7 @@
 ### input variables ###
 
 census.pathfilename <- "cb_2015_us_state_500k/cb_2015_us_state_500k.shp" # full path to US Census shapefiles - cb_2015_us_state_500k.shp
-hydrorivs.pathfilename <- "rivers_north_central_america/HydroRIVERS_v10_na_shp/HydroRIVERS_v10_na.shp" # full path to hydrorivers file - rivers_north_central_america/HydroRIVERS_v10_na_shp/HydroRIVERS_v10_na.shp
+hydrorivs.pathfilename <- "HydroRIVERS_v10_na_shp/HydroRIVERS_v10_na_shp/HydroRIVERS_v10_na.shp" # full path to hydrorivers file - rivers_north_central_america/HydroRIVERS_v10_na_shp/HydroRIVERS_v10_na.shp
 points.pathfilename <- "" # full path to csv file of points of interest to find upstream gauges from - must have Name, lat, and lon columns
 
 input.state.names <- c("NH", "ME", "MA", "RI", "CT", "VT") # put the two letter abbreviations of the states for study area as strings
@@ -21,8 +21,7 @@ time.days <- 3650 # minimum amount of time needed in days
 
 library(tidyverse) # dplyr, tidyr, lubridate, & purrr are used
 library(dataRetrieval) # retrieves USGS data
-library(stars)
-library(sf)
+library(sf) # for working with linestrings
 
 ### custom functions ###
 
@@ -99,7 +98,9 @@ study.area <- states %>%
   st_union()
 
 # rivers
-if(file.exists("rivers.RDS") != TRUE) {
+filename <- paste("rivers_", paste(input.state.names, collapse = "_"), ".RDS", sep = "")
+
+if(file.exists(filename) != TRUE) {
   rivers <- read_sf(hydrorivs.pathfilename) %>% 
     intersection.progbar(study.area) %>% 
     select(
@@ -116,9 +117,9 @@ if(file.exists("rivers.RDS") != TRUE) {
       NEXT_DOWN = unique(NEXT_DOWN)
     )
   
-  saveRDS(rivers, "rivers.RDS")
+  saveRDS(rivers, filename)
 } else {
-  rivers <- readRDS("rivers.RDS")
+  rivers <- readRDS(filename)
 }
 
 
