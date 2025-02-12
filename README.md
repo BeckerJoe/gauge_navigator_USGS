@@ -24,4 +24,4 @@ How to use:
 
 Notes:
 
-This program may miss upstream gauges that are on the same linestring as the point of interest. Suggestions are welcome, and I plan on fixing this with sfnetworks at some point in the future. This program can be run pretty much out of the box, but tinkering will reward you with more sophisticated queries.
+This program may miss upstream gauges that are on the same linestring as the point of interest. Suggestions are welcome, and I plan on fixing this with sfnetworks at some point in the future. This program can be run pretty much out of the box, but tinkering will reward you with more sophisticated functionality.
